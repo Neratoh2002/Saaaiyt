@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Корзина — MyShop{% endblock %}
+{% block content %}
+
+<h1>Корзина</h1>
+
+<div id="cart-container" class="cart">
+  <p>Загрузка...</p>
+</div>
+
+<form id="checkout-form" class="checkout-form">
+  {% if not request.user.is_authenticated %}
+  <label>
+    Email для подтверждения:
+    <input type="email" name="email" required placeholder="you@example.com">
+  </label>
+  {% endif %}
+  <button type="submit" class="btn">Оформить заказ</button>
+</form>
+
+{% endblock %}

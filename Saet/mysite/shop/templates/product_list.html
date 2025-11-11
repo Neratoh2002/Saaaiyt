@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Каталог — MyShop{% endblock %}
+{% block content %}
+
+<h1>Каталог</h1>
+
+<div class="product-grid">
+  {% for p in products %}
+  <article class="product-card" data-product-id="{{ p.id }}">
+    <a class="thumb" href="{% url 'product_detail' p.id %}">
+      {% if p.image %}
+        <img src="{{ p.image.url }}" alt="{{ p.name }}">
+      {% else %}
+        <div class="placeholder">No Image</div>
+      {% endif %}
+    </a>
+    <div class="info">
+      <h3 class="name">{{ p.name }}</h3>
+      <div class="price">{{ p.price }} ₽</div>
+      <button class="btn add-to-cart" data-id="{{ p.id }}">В корзину</button>
+    </div>
+  </article>
+  {% empty %}
+    <p>Пока нет товаров.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

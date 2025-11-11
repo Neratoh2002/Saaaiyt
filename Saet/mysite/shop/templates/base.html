@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}Магазин{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
+  <script defer src="{% static 'shop/js/cart.js' %}"></script>
+  {% csrf_token %}
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="{% url 'product_list' %}" class="logo">MyShop</a>
+    <nav class="nav">
+      <a href="{% url 'product_list' %}">Каталог</a>
+      <a href="{% url 'cart' %}">Корзина <span id="nav-cart-count" class="badge">0</span></a>
+      {% if request.user.is_authenticated %}
+        <span class="hello">Привет, {{ request.user.username }}</span>
+      {% else %}
+        <a href="/admin/login/">Войти</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="container">© {{ now|date:"Y" }} MyShop</div>
+</footer>
+</body>
+</html>

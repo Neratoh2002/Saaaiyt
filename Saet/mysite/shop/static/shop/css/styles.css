@@ -1,0 +1,90 @@
+:root {
+  --bg: #0e0f12;
+  --muted: #888;
+  --card: #1a1c22;
+  --text: #e8e8e8;
+  --accent: #3ea76a;
+  --danger: #e45858;
+  --border: #2a2d36;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif; }
+
+.container { width: min(1100px, 92%); margin: 0 auto; }
+
+.site-header { border-bottom: 1px solid var(--border); position: sticky; top: 0; backdrop-filter: blur(8px); background: rgba(14,15,18,.7); z-index: 10; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+.logo { font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: .4px; }
+.nav a { color: var(--text); text-decoration: none; margin-left: 16px; opacity: .9; }
+.nav .badge { background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 12px; margin-left: 6px; }
+.hello { margin-left: 12px; color: var(--muted); }
+
+.site-footer { border-top: 1px solid var(--border); padding: 24px 0; margin-top: 40px; color: var(--muted); }
+
+h1, h3 { margin: 16px 0; }
+
+/* Сетка товаров (Grid) */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.product-card .thumb { display: block; aspect-ratio: 4 / 3; background: #111; }
+.product-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.placeholder { display: grid; place-items: center; background: #15161b; color: var(--muted); }
+.placeholder.lg { width: 100%; aspect-ratio: 4/3; }
+.placeholder.sm { width: 64px; height: 48px; }
+
+.product-card .info { padding: 12px; display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.product-card .name { font-size: 15px; margin: 0; }
+.product-card .price { color: var(--muted); }
+
+.btn {
+  appearance: none; border: 0; background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600;
+}
+.btn:hover { filter: brightness(1.05); }
+.btn.btn-danger { background: var(--danger); }
+
+/* Страница товара (Flex) */
+.product-detail { display: flex; gap: 24px; }
+.product-detail .gallery { flex: 1 1 50%; }
+.product-detail .gallery img { width: 100%; border-radius: 14px; border: 1px solid var(--border); }
+.product-detail .summary { flex: 1 1 50%; }
+.product-detail .desc { color: var(--muted); }
+.qty-row { display: flex; align-items: center; gap: 10px; margin: 16px 0; }
+.qty-row input { width: 80px; padding: 8px; border-radius: 8px; border: 1px solid var(--border); background: #101217; color: var(--text); }
+
+/* Корзина */
+.cart-rows { display: grid; gap: 10px; }
+.cart-row { display: grid; grid-template-columns: 1.5fr .7fr .6fr .3fr; gap: 10px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px; }
+.cart-col { display: flex; align-items: center; gap: 12px; }
+.cart-product img { width: 72px; height: 54px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+.cart-qty input { width: 90px; padding: 8px; border-radius: 8px; border: 1px solid var(--border); background: #101217; color: var(--text); }
+.cart-total { margin-top: 14px; text-align: right; font-size: 18px; }
+.checkout-form { margin-top: 18px; display: flex; gap: 12px; align-items: center; }
+.checkout-form input[type="email"] { padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: #101217; color: var(--text); }
+
+@media (max-width: 720px) {
+  .product-detail { flex-direction: column; }
+  .cart-row { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  .cart-col.cart-actions { justify-content: flex-end; }
+}
